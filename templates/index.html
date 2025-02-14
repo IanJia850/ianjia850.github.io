@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Words to JSON</title>
+</head>
+<body>
+    <h1>Add a Word to the JSON File</h1>
+    <form action="/add" method="POST">
+        <!-- Dropdown for Period -->
+        <label for="period">Select Period:</label>
+        <select id="period" name="period" required>
+            {% for period in periods %}
+                <option value="{{ period }}">{{ period }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <!-- Input for Word -->
+        <label for="word">Word:</label>
+        <input type="text" id="word" name="word" required>
+        <br><br>
+
+        <!-- Input for Definition -->
+        <label for="definition">Definition:</label>
+        <input type="text" id="definition" name="definition" required>
+        <br><br>
+
+        <!-- Input for Date -->
+        <label for="date">Date (integer):</label>
+        <input type="number" id="date" name="date" required>
+        <br><br>
+
+        <!-- Dropdown for Type -->
+        <label for="type">Type:</label>
+        <select id="type" name="type" required>
+            <option value="E">Economic</option>
+            <option value="S">Social</option>
+            <option value="P">Political</option>
+            <option value="FA">Foreign Affair</option>
+        </select>
+        <br><br>
+
+        <!-- Submit Button -->
+        <button type="submit">Add Word</button>
+    </form>
+
+    <h2>Current Data:</h2>
+    <pre>{{ data | tojson(indent=4) }}</pre>
+</body>
+</html>
